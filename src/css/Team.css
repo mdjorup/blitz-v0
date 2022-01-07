@@ -1,0 +1,31 @@
+.team__entry {
+  display: flex;
+  border-top: 1px solid darkgray;
+  color: lightgray;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: medium;
+}
+
+.team__entry:hover {
+  color: aqua;
+}
+
+.team__rank {
+  flex: 0.15;
+  padding-left: 10px;
+  font-size: 18px;
+}
+.team__rank > h6 {
+  justify-self: center;
+}
+
+.team__body {
+  flex: 0.5;
+  
+}
+
+.team__record {
+  flex: 0.35;
+  font-size: 20px;
+}

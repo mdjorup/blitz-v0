@@ -1,0 +1,21 @@
+.headerOption {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  cursor: pointer;
+  color: lightgray;
+  margin-left: 10px;
+  margin-right: 10px;
+
+
+}
+
+.headerOption > h2 {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.headerOption:hover {
+  border-bottom: 2px solid white;
+  color: white;
+
+}

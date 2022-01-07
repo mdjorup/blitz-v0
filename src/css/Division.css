@@ -1,0 +1,17 @@
+.division {
+  border: 2px solid lightgray;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  color: lightgray;
+  /* width: 180px; */
+
+
+}
+
+.division > h4 {
+  padding-left: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: large;
+}
+
