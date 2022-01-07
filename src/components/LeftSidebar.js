@@ -34,7 +34,7 @@ function LeftSidebar() {
       setScoresData(json);
     };
     fetchScoresData();
-  }, [season])
+  }, [])
 
   
 

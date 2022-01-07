@@ -29,3 +29,36 @@
   flex: 0.35;
   font-size: 20px;
 }
+
+
+.schedulepopup {
+  background-color: #383838;
+  border: 1px solid black;
+  font-size: 10px;
+}
+
+.gameresult {
+  display: flex;
+  justify-content: space-between;
+  color: whitesmoke;
+  padding-right: 5px;
+  padding-left: 10px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.gameresult__matchup {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+
+.gameresult__result__W {
+  color: lightgreen;
+}
+.gameresult__result__L {
+  color: tomato;
+}
+.gameresult__result__T {
+  color: white;
+}

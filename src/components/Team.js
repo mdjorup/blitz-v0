@@ -1,12 +1,35 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../css/Team.css';
 
 
 function GameResult({week, homeTrue, awayTeam, homeTeam, awayScore, homeScore}){
   // this is one entry that goes in the popup div
+
+  const result = () => {
+    if ((homeTrue && homeScore > awayScore) || (!homeTrue && awayScore > homeScore)){
+      return "W";
+    } else if (homeScore != awayScore){
+      return "L";
+    } else {
+      return "T";
+    }
+  }
+
   return (
     <div className='gameresult'>
-      <h6>{week}</h6>
+      {/* 1  GB  @ MIN   W28-17
+          2  CHI @ GB    W16-20 */}
+      <div className="gameresult__week">
+        <p>{week}</p>
+      </div>
+      <div className="gameresult__matchup">
+        <p>{awayTeam} </p>
+        <p>@</p>
+        <p> {homeTeam}</p>
+      </div>
+      <div className={`gameresult__result__${result()}`}>
+        <p>{result()}{awayScore}-{homeScore}</p>
+      </div>
 
     </div>
 
@@ -39,21 +62,34 @@ function SchedulePopup({teamName, teamScoresData}) {
 
 
 function Team({rank, teamName, wins, losses, ties, teamScoresData}) {
+  const [isHovering, setIsHovering] = useState(false);
+  
+  const handleMouseHover = () => {
+    setIsHovering(true);
+  };
 
-
+  const handleMouseOut = () => {
+    setIsHovering(false);
+  };
 
   return (
-    <div className="team__entry">
-      <div className="team__rank">
-        <h6>{rank}</h6>
+    <div className="team">
+      <div className="team__entry" onMouseOver={handleMouseHover} onMouseOut={handleMouseOut}>
+        <div className="team__rank">
+          <h6>{rank}</h6>
+        </div>
+        <div className="team__body">
+          <h6>{teamName}</h6>
+        </div>
+        <div className="team__record">
+          <h6>{wins}-{losses}-{ties}</h6>
+        </div>
       </div>
-      <div className="team__body">
-        <h6>{teamName}</h6>
-      </div>
-      <div className="team__record">
-        <h6>{wins}-{losses}-{ties}</h6>
-      </div>
+      {isHovering && <SchedulePopup teamName={teamName} teamScoresData={teamScoresData}/>}
+
     </div>
+
+
     
     
   )
