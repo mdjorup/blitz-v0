@@ -1,3 +1,7 @@
+.team {
+  position: relative;
+}
+
 .team__entry {
   display: flex;
   border-top: 1px solid darkgray;
@@ -35,6 +39,7 @@
   background-color: #383838;
   border: 1px solid black;
   font-size: 10px;
+  z-index: 999;
 }
 
 .gameresult {
@@ -54,11 +59,19 @@
 
 
 .gameresult__result__W {
-  color: lightgreen;
+  color: limegreen;
 }
 .gameresult__result__L {
   color: tomato;
 }
 .gameresult__result__T {
-  color: white;
+  color: yellow;
+}
+.gameresult__result__ {
+  color: whitesmoke;
+}
+
+.gameresult__matchup > p {
+  padding-right: 1px;
+  padding-left: 1px;
 }

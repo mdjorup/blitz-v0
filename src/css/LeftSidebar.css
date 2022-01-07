@@ -2,10 +2,11 @@
   flex: 0.3;
   padding-top: 20px;
   align-items: center;
+  margin-bottom: 1000px;
 }
 
 .year__dropdown {
-  margin-left: 30px;
+  margin-left: 80px;
   margin-top: 10px;
   cursor: pointer;
 
@@ -15,6 +16,52 @@
   font-size: 12px;
   padding-right: 5px;
   padding-left: 5px;
+}
+
+.standings__type {
+  display: flex;
+  border: 1px solid darkgray;
+  border-radius: 5px;
+  width: fit-content;
+  margin-top: 10px;
+  margin-left: 40px;
+  color: lightgray;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.standings__type:hover {
+  cursor: pointer;
+}
+.divisional__active {
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: aqua;
+  border-right: 2px solid lightgray;
+}
+.divisional__inactive {
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: lightgray;
+}
+.conference__active {
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: aqua;
+  border-left: 2px solid lightgray;
+
+}
+.conference__inactive {
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .leftsidebar__divisions {
@@ -35,6 +82,6 @@
 .leftsidebar__header {
   display: flex;
   /* border: 1px solid red; */
-  padding-left: 25px;
+  padding-left: 40px;
   color: lightgray;
 }

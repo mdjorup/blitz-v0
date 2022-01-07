@@ -14,7 +14,7 @@ function LeftSidebar() {
 
   const [scoresData, setScoresData] = useState([]);
 
-  const seasons = [2021, 2020, 2019];
+  const seasons = [2021];
 
   useEffect(() => {
     const url = `https://api.sportsdata.io/v3/nfl/scores/json/Standings/${season}REG?key=${apiKey}`;
@@ -43,11 +43,32 @@ function LeftSidebar() {
     return divisionData;
   }
 
+  const getConferenceData = (conf) => {
+    let divisionData = standingsData.filter((team) => team.Conference === conf).sort((first, second) => (
+      parseInt(first.ConferenceRank) - parseInt(second.ConferenceRank)
+    ))
+    return divisionData;
+  }
+
   const onDropdownClick = () => setDropdownActive(!isDropdownActive);
 
   const onOptionClick = option => () => {
     setSeason(option);
     setDropdownActive(false);
+  }
+
+  const handleDivisionClick = () => {
+    if(standingsOption === "divisional"){
+      return;
+    }
+    setStandingsOption("divisional");
+  }
+
+  const handleConferenceClick = () => {
+    if(standingsOption === "conference"){
+      return;
+    }
+    setStandingsOption("conference");
   }
 
   return (
@@ -65,18 +86,28 @@ function LeftSidebar() {
           />
         </div>
       </div>
+      <div className="standings__type">
+        <div className={`divisional__${standingsOption==="divisional"?"active":"inactive"}`} onClick={handleDivisionClick}>
+          <h4>Divisional</h4>
+        </div>
+        <div className={`conference__${standingsOption==="conference"?"active":"inactive"}`} onClick={handleConferenceClick}>
+          <h4>Conference</h4>
+        </div>
+      </div>
       <div className="leftsidebar__divisions">
         <div className="leftsidebar__nfc">
-          {<Division conf='NFC' subconf='North' divisionData={getDivisionData('NFC', "North")} scoresData={scoresData}/>}
-          {<Division conf='NFC' subconf='South' divisionData={getDivisionData('NFC', "South")} scoresData={scoresData}/>}
-          {<Division conf='NFC' subconf='East' divisionData={getDivisionData('NFC', "East")} scoresData={scoresData}/>}
-          {<Division conf='NFC' subconf='West' divisionData={getDivisionData('NFC', "West")} scoresData={scoresData}/>}
+          {standingsOption === 'divisional' && <Division conf='NFC' subconf='North' divisionData={getDivisionData('NFC', "North")} scoresData={scoresData}/>}
+          {standingsOption === 'divisional' && <Division conf='NFC' subconf='South' divisionData={getDivisionData('NFC', "South")} scoresData={scoresData}/>}
+          {standingsOption === 'divisional' && <Division conf='NFC' subconf='East' divisionData={getDivisionData('NFC', "East")} scoresData={scoresData}/>}
+          {standingsOption === 'divisional' && <Division conf='NFC' subconf='West' divisionData={getDivisionData('NFC', "West")} scoresData={scoresData}/>}
+          {standingsOption === 'conference' && <Division conf="NFC" subconf="" divisionData={getConferenceData("NFC")} scoresData={scoresData} />}
         </div>
         <div className="leftsidebar__afc">
-          {<Division conf='AFC' subconf='North' divisionData={getDivisionData('AFC', "North")} scoresData={scoresData}/>}
-          {<Division conf='AFC' subconf='South' divisionData={getDivisionData('AFC', "South")} scoresData={scoresData}/>}
-          {<Division conf='AFC' subconf='East' divisionData={getDivisionData('AFC', "East")} scoresData={scoresData}/>}
-          {<Division conf='AFC' subconf='West' divisionData={getDivisionData('AFC', "West")} scoresData={scoresData}/>}
+          {standingsOption === 'divisional' && <Division conf='AFC' subconf='North' divisionData={getDivisionData('AFC', "North")} scoresData={scoresData}/>}
+          {standingsOption === 'divisional' && <Division conf='AFC' subconf='South' divisionData={getDivisionData('AFC', "South")} scoresData={scoresData}/>}
+          {standingsOption === 'divisional' && <Division conf='AFC' subconf='East' divisionData={getDivisionData('AFC', "East")} scoresData={scoresData}/>}
+          {standingsOption === 'divisional' && <Division conf='AFC' subconf='West' divisionData={getDivisionData('AFC', "West")} scoresData={scoresData}/>}
+          {standingsOption === 'conference' && <Division conf="AFC" subconf="" divisionData={getConferenceData("AFC")} scoresData={scoresData} />}
         </div>
       </div>
 

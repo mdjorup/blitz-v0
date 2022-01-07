@@ -6,9 +6,12 @@ function GameResult({week, homeTrue, awayTeam, homeTeam, awayScore, homeScore}){
   // this is one entry that goes in the popup div
 
   const result = () => {
+    if(!awayScore && !homeScore){
+      return "";
+    }
     if ((homeTrue && homeScore > awayScore) || (!homeTrue && awayScore > homeScore)){
       return "W";
-    } else if (homeScore != awayScore){
+    } else if (homeScore !== awayScore){
       return "L";
     } else {
       return "T";
@@ -63,13 +66,17 @@ function SchedulePopup({teamName, teamScoresData}) {
 
 function Team({rank, teamName, wins, losses, ties, teamScoresData}) {
   const [isHovering, setIsHovering] = useState(false);
+  const [delayHandler, setDelayHandler] = useState(null);
   
   const handleMouseHover = () => {
-    setIsHovering(true);
+    setDelayHandler(setTimeout(() => {
+      setIsHovering(true);
+    }, 500))
   };
 
   const handleMouseOut = () => {
     setIsHovering(false);
+    clearTimeout(delayHandler);
   };
 
   return (
