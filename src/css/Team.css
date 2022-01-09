@@ -36,8 +36,7 @@
 
 
 .schedulepopup {
-  background-color: #383838;
-  border: 1px solid black;
+  background-color: #282828;
   font-size: 10px;
   z-index: 999;
 }

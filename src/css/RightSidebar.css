@@ -1,4 +1,8 @@
 .rightsidebar {
-  flex: 0.25;
-
+  flex: 0.3;
+  text-align: right;
+  padding-top: 20px;
+  padding-right: 30px;
+  color:lightgray;
 }
+

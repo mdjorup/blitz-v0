@@ -1,3 +1,6 @@
 .weeklyscores {
-  flex: 0.45;
+  flex: 0.4;
+  text-align: center;
+  padding-top: 20px;
+  color:lightgray;
 }
