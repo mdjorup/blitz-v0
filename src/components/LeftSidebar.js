@@ -24,7 +24,7 @@ function LeftSidebar() {
       setStandingsData(json);
     };
     fetchStandingsData();
-  }, [standingsOption, season]);
+  }, [season]);
 
   useEffect(() => {
     const url = `https://api.sportsdata.io/v3/nfl/scores/json/Scores/${season}?key=${apiKey}`;
