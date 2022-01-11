@@ -2,41 +2,13 @@ import React, {useState, useEffect} from 'react';
 import '../css/LeftSidebar.css';
 import Division from './Division.js';
 import StdDropdown from './StdDropdown';
+import { API_KEY } from '../creds';
 
-function LeftSidebar() {
-  const apiKey = '518c5302f7b64762af932430314e90ee';
+function LeftSidebar({season, standingsData, scoresData}) {
 
-  const [season, setSeason] = useState('2021');
   const [isDropdownActive, setDropdownActive] = useState(false);
-
-  const [standingsData, setStandingsData] = useState([]);
   const [standingsOption, setStandingsOption] = useState('divisional');
-
-  const [scoresData, setScoresData] = useState([]);
-
   const seasons = [2021];
-
-  useEffect(() => {
-    const url = `https://api.sportsdata.io/v3/nfl/scores/json/Standings/${season}REG?key=${apiKey}`;
-    const fetchStandingsData = async () => {
-      const response = await fetch(url);
-      const json = await response.json();
-      setStandingsData(json);
-    };
-    fetchStandingsData();
-  }, [season]);
-
-  useEffect(() => {
-    const url = `https://api.sportsdata.io/v3/nfl/scores/json/Scores/${season}?key=${apiKey}`;
-    const fetchScoresData = async() => {
-      const response = await fetch(url);
-      const json = await response.json();
-      setScoresData(json);
-    };
-    fetchScoresData();
-  }, [])
-
-  
 
   const getDivisionData = (conf, subconf) => {
     let divisionData = standingsData.filter((team) => team.Conference === conf && team.Division === subconf);
@@ -53,7 +25,7 @@ function LeftSidebar() {
   const onDropdownClick = () => setDropdownActive(!isDropdownActive);
 
   const onOptionClick = option => () => {
-    setSeason(option);
+    //setSeason(option);
     setDropdownActive(false);
   }
 
@@ -77,7 +49,7 @@ function LeftSidebar() {
         <h1>Standings</h1>
         <div className="year__dropdown">
           <StdDropdown 
-            season={season} 
+            value={season} 
             options={seasons} 
             isActive={isDropdownActive}
             onDropdownClick={onDropdownClick}

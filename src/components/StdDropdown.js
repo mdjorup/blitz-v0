@@ -4,7 +4,7 @@ import '../css/StdDropdown.css';
 import { CgChevronDown } from 'react-icons/cg';
 import {IconContext} from 'react-icons';
 
-function StdDropdown({season, options, isActive, onDropdownClick, onOptionClick}) {
+function StdDropdown({value, options, isActive, onDropdownClick, onOptionClick}) {
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ function StdDropdown({season, options, isActive, onDropdownClick, onOptionClick}
   return (
     <div className="stdDropdown">
       <div className="dropdown__menu__trigger" onClick={onDropdownClick}>
-        <h5>{season}</h5>
+        <h5>{value}</h5>
         <IconContext.Provider value={{ color: "aqua"}}>
             <CgChevronDown/>
         </IconContext.Provider>
