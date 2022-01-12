@@ -28,6 +28,10 @@
   font-size: 14px;
 }
 
+.menu__option:hover {
+  background-color: gray;
+}
+
 .dropdown__menu__inactive {
   visibility: hidden;
 }

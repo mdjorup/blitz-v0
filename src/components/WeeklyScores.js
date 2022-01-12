@@ -21,7 +21,7 @@ function Score({game}) {
           <NFLIcon team={game.AwayTeam} size={70} />
           <h1>{game.AwayTeam}</h1>
           {!game.HasStarted && 
-            <h1>@</h1> }
+            <h2>@</h2> }
           {game.HasStarted && <div className="score__information">
             <h2>{game.AwayScore} - {game.HomeScore}</h2>
             <p>{game.QuarterDescription}</p>
