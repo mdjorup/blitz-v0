@@ -3,7 +3,7 @@
   top: 0;
   width: 100%;
   display: flex;
-  border-bottom: 1px solid aqua;
+  border-bottom: 2px solid gray;
   z-index: 999;
   padding-top: 10px;
   padding-bottom: 10px;

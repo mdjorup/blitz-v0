@@ -4,10 +4,9 @@
 
 .team__entry {
   display: flex;
+  align-items: center;
   border-top: 1px solid darkgray;
   color: lightgray;
-  padding-top: 10px;
-  padding-bottom: 10px;
   font-size: medium;
 }
 
@@ -16,8 +15,8 @@
 }
 
 .team__rank {
-  flex: 0.15;
-  padding-left: 10px;
+  flex: 0.10;
+  padding-left: 15px;
   font-size: 18px;
 }
 .team__rank > h6 {
@@ -25,7 +24,10 @@
 }
 
 .team__body {
-  flex: 0.5;
+  flex: 0.55;
+  display: flex;  
+  align-items: center;
+  justify-content: space-evenly;
   
 }
 

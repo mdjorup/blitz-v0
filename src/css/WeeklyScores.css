@@ -2,8 +2,8 @@
   flex: 0.4;
   padding: 20px;
   color:lightgray;
-  border-right: 1px solid aqua;
-  border-left: 1px solid aqua;
+  border-right: 1px solid gray;
+  border-left: 1px solid gray;
 }
 
 .weeklyscores__dropdown{
@@ -21,9 +21,33 @@
 
 
 .score__entry {
-  background-color: black;
+  margin-top: 20px;
+}
+
+.score__body {
   border: 1px solid lightgray;
   border-radius: 5px;
-  margin-top: 20px;
-  
 }
+
+.score__results {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-top: 10px;
+}
+
+.score__status {
+  text-align: center;
+}
+
+.score__update > p {
+  text-align: right;
+  color: gray;
+  font-size: small;
+}
+
+.score__information {
+  text-align: center;
+}
+
+

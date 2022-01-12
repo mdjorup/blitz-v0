@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import '../css/Team.css';
+import NFLIcon from './NFLIcon';
 
 
 function GameResult({week, homeTrue, awayTeam, homeTeam, awayScore, homeScore}){
@@ -87,6 +88,7 @@ function Team({rank, teamName, wins, losses, ties, teamScoresData}) {
         </div>
         <div className="team__body">
           <h6>{teamName}</h6>
+          <NFLIcon team={teamName} size={30} />
         </div>
         <div className="team__record">
           <h6>{wins}-{losses}-{ties}</h6>

@@ -53,7 +53,7 @@ function App() {
         <RightSidebar />
 
       </div>
-
+      {/* <p>{scoresData[0]}</p> */}
       {/* Footer */}
       
     </div>
