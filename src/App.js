@@ -5,6 +5,8 @@ import Header from "./components/Header.js";
 import LeftSidebar from './components/LeftSidebar';
 import RightSidebar from './components/RightSidebar';
 import WeeklyScores from './components/WeeklyScores';
+import Register from './components/authui/Register';
+import Login from './components/authui/Login';
 import {BrowserRouter as Router, Routes, Route, useNavigate} from 'react-router-dom';
 
 function App() {
@@ -46,7 +48,8 @@ function App() {
     <Router>
       <Routes>
         <Route path='/' element={<Home season={season} standingsData={standingsData} scoresData={scoresData}/>} />
-        <Route path='/example' element={<Example />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
       </Routes>
     </Router>
   );

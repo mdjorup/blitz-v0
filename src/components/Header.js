@@ -9,8 +9,12 @@ function Header() {
 
   let navigate = useNavigate();
 
-  const handleSignupClick = () => {
-    navigate('/example');
+  const handleRegisterClick = () => {
+    navigate('/register');
+  }
+
+  const handleLoginClick = () => {
+    navigate('/login')
   }
 
   return (
@@ -28,8 +32,8 @@ function Header() {
         <HeaderOption title="Scores"/>
       </div>
       <div className="header__right">
-        <HeaderOption title="Log In" onClick={handleSignupClick}/>
-        <div className="header__signup" onClick={handleSignupClick}>
+        <HeaderOption title="Log In" onClick={handleLoginClick}/>
+        <div className="header__signup" onClick={handleRegisterClick}>
           <h2>Register</h2>
         </div>
       </div>

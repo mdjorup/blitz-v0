@@ -1,0 +1,36 @@
+.register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #282828;
+  width: 100vw;
+  height: 100vh;
+}
+.register__body {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  align-items: center;
+}
+
+.register__body >h1 {
+  color: lightgray;
+}
+
+.register__body > input {
+  margin-top: 20px;
+  background-color: transparent;
+  color: lightgray;
+  border: 2px solid lightgray;
+  border-radius: 5px;
+  padding: 10px 10px 10px 10px;
+  outline: none !important;
+}
+
+.register__body > input:focus {
+  border: 2px solid aqua;
+}
+
+.register__body > input:hover {
+  border: 2px solid aqua;
+} 
