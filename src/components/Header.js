@@ -2,11 +2,17 @@ import React from 'react'
 import "../css/Header.css";
 import HeaderOption from './HeaderOption';
 import { SiBetfair } from 'react-icons/si';
-
 import {IconContext} from 'react-icons';
-
+import {useNavigate} from 'react-router-dom';
 
 function Header() {
+
+  let navigate = useNavigate();
+
+  const handleSignupClick = () => {
+    navigate('/example');
+  }
+
   return (
     <div className='header'>
       <div className="header__left">
@@ -22,8 +28,8 @@ function Header() {
         <HeaderOption title="Scores"/>
       </div>
       <div className="header__right">
-        <HeaderOption title="Log In"/>
-        <div className="header__signup">
+        <HeaderOption title="Log In" onClick={handleSignupClick}/>
+        <div className="header__signup" onClick={handleSignupClick}>
           <h2>Register</h2>
         </div>
       </div>

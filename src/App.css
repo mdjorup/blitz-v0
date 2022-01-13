@@ -1,9 +1,9 @@
-.app {
+.home {
   display: flex;
   flex-direction: column;
 }
 
-.app__body {
+.home__body {
   display: flex;
   background-color: #282828;
   width: 100%;

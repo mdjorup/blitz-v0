@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import '../css/LeftSidebar.css';
 import Division from './Division.js';
 import StdDropdown from './StdDropdown';
-import { API_KEY } from '../creds';
 
 function LeftSidebar({season, standingsData, scoresData}) {
 

@@ -5,6 +5,7 @@ import Header from "./components/Header.js";
 import LeftSidebar from './components/LeftSidebar';
 import RightSidebar from './components/RightSidebar';
 import WeeklyScores from './components/WeeklyScores';
+import {BrowserRouter as Router, Routes, Route, useNavigate} from 'react-router-dom';
 
 function App() {
 
@@ -42,9 +43,21 @@ function App() {
   }, [])
 
   return (
-    <div className="app">
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home season={season} standingsData={standingsData} scoresData={scoresData}/>} />
+        <Route path='/example' element={<Example />} />
+      </Routes>
+    </Router>
+  );
+}
+
+const Home = ({season, standingsData, scoresData}) => {
+
+  return (
+    <div className="home">
       <Header />
-      <div className="app__body">
+      <div className="home__body">
         {/* Nfl Standings */}
         <LeftSidebar season={season} standingsData={standingsData} scoresData={scoresData}/>
         {/* Scores */}
@@ -53,11 +66,19 @@ function App() {
         <RightSidebar />
 
       </div>
-      {/* <p>{scoresData[0]}</p> */}
       {/* Footer */}
-      
     </div>
-  );
+  )
+}
+
+const Example = () => {
+
+  const navigate = useNavigate();
+  return (
+    <div className='example' onClick={() => {navigate('/')}}>
+      <h1>Thank goodness this worked!</h1>
+    </div>
+  )
 }
 
 export default App;
