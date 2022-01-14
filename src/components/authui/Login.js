@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import '../../css/Login.css';
+import {auth} from '../../firebase.js';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import {SiBetfair} from 'react-icons/si';
 import {IconContext} from 'react-icons';
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +18,14 @@ function Login() {
   }
 
   const handleLogin = () => {
-    navigate('/')
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        navigate('/');
+      })
+      .catch((error) => {
+        console.log(error.code);
+        console.log(error.message);
+      })
   }
 
 

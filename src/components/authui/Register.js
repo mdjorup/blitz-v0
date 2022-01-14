@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import '../../css/Register.css';
+import { createUserWithEmailAndPassword, updateProfile} from 'firebase/auth';
+import { auth } from '../../firebase.js';
 import {SiBetfair} from 'react-icons/si';
 import {IconContext} from 'react-icons';
 
@@ -13,12 +15,26 @@ function Register() {
 
   let navigate = useNavigate();
 
+
   const navigateHome = () => {
     navigate('/');
   }
 
   const handleRegister = () => {
-    navigate('/')
+    createUserWithEmailAndPassword(auth, email, password)
+      .then( async (userCredential) => {
+        //signed in
+        await updateProfile(userCredential.user, {
+          displayName: firstName,
+        });
+        navigate('/');
+      })
+      .catch((error) => {
+        console.log(error.code);
+        console.log(error.message);
+      })
+    
+    
   }
 
   return (

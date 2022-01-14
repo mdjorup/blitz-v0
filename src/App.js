@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {auth} from './firebase.js';
 import './App.css';
 import { API_KEY } from './creds';
 import Header from "./components/Header.js";
@@ -7,13 +8,21 @@ import RightSidebar from './components/RightSidebar';
 import WeeklyScores from './components/WeeklyScores';
 import Register from './components/authui/Register';
 import Login from './components/authui/Login';
-import {BrowserRouter as Router, Routes, Route, useNavigate} from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 function App() {
 
   const [season, setSeason] = useState("2021");
   const [standingsData, setStandingsData] = useState([]);
   const [scoresData, setScoresData] = useState([]);
+
+  const [user, setUser] = useState(auth.currentUser);
+
+  useEffect(() => {
+    auth.onAuthStateChanged(firebaseUser => {
+      setUser(firebaseUser);
+    })
+  })
 
   useEffect(() => {
     const url = `https://api.sportsdata.io/v3/nfl/scores/json/CurrentSeason?key=${API_KEY}`
@@ -22,7 +31,8 @@ function App() {
       const json = await response.json();
       setSeason(json);
     }
-  }, [])
+    //fetchSeason();
+  }, []);
 
   useEffect(() => {
     const url = `https://api.sportsdata.io/v3/nfl/scores/json/Standings/${season}REG?key=${API_KEY}`;
@@ -42,12 +52,12 @@ function App() {
       setScoresData(json);
     };
     fetchScoresData();
-  }, [])
+  }, [season])
 
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<Home season={season} standingsData={standingsData} scoresData={scoresData}/>} />
+        <Route path='/' element={<Home user={user}season={season} standingsData={standingsData} scoresData={scoresData}/>} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
       </Routes>
@@ -55,11 +65,11 @@ function App() {
   );
 }
 
-const Home = ({season, standingsData, scoresData}) => {
+const Home = ({user, season, standingsData, scoresData}) => {
 
   return (
     <div className="home">
-      <Header />
+      <Header user={user}/>
       <div className="home__body">
         {/* Nfl Standings */}
         <LeftSidebar season={season} standingsData={standingsData} scoresData={scoresData}/>
@@ -70,16 +80,6 @@ const Home = ({season, standingsData, scoresData}) => {
 
       </div>
       {/* Footer */}
-    </div>
-  )
-}
-
-const Example = () => {
-
-  const navigate = useNavigate();
-  return (
-    <div className='example' onClick={() => {navigate('/')}}>
-      <h1>Thank goodness this worked!</h1>
     </div>
   )
 }
