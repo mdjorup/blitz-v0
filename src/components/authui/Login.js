@@ -10,11 +10,26 @@ function Login() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState(null);
 
   let navigate = useNavigate();
 
   const navigateHome = () => {
     navigate('/');
+  }
+
+  const displayErrorMessage = (message) => {
+    if(message === "auth/invalid-email"){
+      return "Invalid email";
+    } else if (message === 'auth/user-not-found'){
+      //navigate('/register');
+      return "User not found";
+    } else if (message === 'auth/wrong-password'){
+      return "Incorrect password";
+    }
+    else {
+      return message;
+    }
   }
 
   const handleLogin = () => {
@@ -23,8 +38,7 @@ function Login() {
         navigate('/');
       })
       .catch((error) => {
-        console.log(error.code);
-        console.log(error.message);
+        setErrorMessage(error.code);
       })
   }
 
@@ -44,6 +58,7 @@ function Login() {
       <div className="login__body">
         <input type='email' placeholder='email' onChange={event => setEmail(event.target.value)}></input>
         <input type='password' placeholder='password' onChange={event => setPassword(event.target.value)}></input>
+        {errorMessage && <h6>{displayErrorMessage(errorMessage)}</h6>}
         <button className='login__button' onClick={handleLogin}>
           Log In
         </button>

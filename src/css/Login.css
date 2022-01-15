@@ -64,3 +64,9 @@
 .login__button:hover {
   background-color: aqua;
 }
+
+.login__body > h6 {
+  color: red;
+  font-size: 14px;
+  margin-top: 20px;
+}

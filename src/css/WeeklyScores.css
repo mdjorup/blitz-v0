@@ -4,8 +4,6 @@
   color:lightgray;
   border-right: 1px solid gray;
   border-left: 1px solid gray;
-  height: 1250px;
-  overflow: auto;
 }
 
 .weeklyscores__dropdown{
