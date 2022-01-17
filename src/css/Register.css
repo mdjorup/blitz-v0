@@ -6,9 +6,12 @@
 }
 
 .register__header {
+  display: flex;
   color: lightgray;
-  padding-left: 50px;
   padding-top: 20px;
+  justify-content: space-between;
+  padding: 20px 60px 0 60px;
+  height: 50px;
 }
 
 .register__logo {
@@ -26,7 +29,7 @@
   padding-top: 150px;
 }
 
-.register__body >h1 {
+.register__body >h2 {
   color: lightgray;
 }
 
@@ -58,9 +61,15 @@
   font-size: 18px;
   font-weight: 600;
   border-radius: 5px;
-  padding: 10px 15px 10px 15px;
+  padding: 8px 12px 8px 12px;
 }
 
 .register__button:hover {
   background-color: aqua;
+}
+
+.register__body > h6 {
+  color: red;
+  font-size: 14px;
+  margin-top: 20px;
 }

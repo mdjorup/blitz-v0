@@ -5,6 +5,7 @@ import { createUserWithEmailAndPassword, updateProfile} from 'firebase/auth';
 import { auth } from '../../firebase.js';
 import {SiBetfair} from 'react-icons/si';
 import {IconContext} from 'react-icons';
+import HeaderOption from '../HeaderOption';
 
 function Register() {
 
@@ -12,7 +13,7 @@ function Register() {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
+  const [errorMessage, setErrorMessage] = useState(null);
 
   let navigate = useNavigate();
 
@@ -21,7 +22,18 @@ function Register() {
     navigate('/');
   }
 
+  const displayErrorMessage = (message) => {
+    if(message === 'auth/email-already-in-use'){
+      return "Email already exists";
+    }
+    return message;
+  }
+
   const handleRegister = () => {
+    if (!firstName || !lastName || !email || !password){
+      setErrorMessage("Please fill in all fields");
+      return;
+    }
     createUserWithEmailAndPassword(auth, email, password)
       .then( async (userCredential) => {
         //signed in
@@ -31,8 +43,7 @@ function Register() {
         navigate('/');
       })
       .catch((error) => {
-        console.log(error.code);
-        console.log(error.message);
+        setErrorMessage(error.code);
       })
     
     
@@ -48,15 +59,18 @@ function Register() {
             </IconContext.Provider>
           </div>
           <h2>Blitz</h2>
-        </div> 
+        </div>
+        <HeaderOption title='Login' onClick={()=>navigate('/login')}/> 
       </div> 
       <div className="register__body">
+        <h2>Register</h2>
         <input type='text' placeholder='First name' onChange={event => setFirstName(event.target.value)}></input>
         <input type='text' placeholder='Last name' onChange={event => setLastName(event.target.value)}></input>
         <input type='email' placeholder='email' onChange={event => setEmail(event.target.value)}></input>
         <input type='password' placeholder='password' onChange={event => setPassword(event.target.value)}></input>
+        {errorMessage && <h6>{displayErrorMessage(errorMessage)}</h6>}
         <button className='register__button' onClick={handleRegister}>
-          Register
+          Submit
         </button>
       </div>
     </div>

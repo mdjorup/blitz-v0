@@ -5,6 +5,8 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import {SiBetfair} from 'react-icons/si';
 import {IconContext} from 'react-icons';
 import { useNavigate } from 'react-router-dom';
+import HeaderOption from '../HeaderOption';
+
 
 function Login() {
 
@@ -53,14 +55,16 @@ function Login() {
             </IconContext.Provider>
           </div>
           <h2>Blitz</h2>
-        </div> 
+        </div>
+        <HeaderOption title='Register' onClick={()=>navigate('/register')}/>  
       </div> 
       <div className="login__body">
+        <h2>Login</h2>
         <input type='email' placeholder='email' onChange={event => setEmail(event.target.value)}></input>
         <input type='password' placeholder='password' onChange={event => setPassword(event.target.value)}></input>
         {errorMessage && <h6>{displayErrorMessage(errorMessage)}</h6>}
         <button className='login__button' onClick={handleLogin}>
-          Log In
+          Submit
         </button>
       </div>
     </div>
