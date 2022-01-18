@@ -1,0 +1,15 @@
+Next things to do:
+
+1) get correct current week and season in app.js
+ - this includes postseason
+
+2) make a score information page
+  - implement link to page from the header
+  - more detial
+  - week lookup by a url endpoint
+  - No dropdown on home page - just current week
+
+3) Make the UI to make picks by current week
+  - states and everything
+  - set up to be sent to db
+  

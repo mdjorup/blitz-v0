@@ -35,6 +35,10 @@ function Login() {
   }
 
   const handleLogin = () => {
+    if (!email || !password){
+      setErrorMessage("Please fill in all fields");
+      return;
+    }
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         navigate('/');
