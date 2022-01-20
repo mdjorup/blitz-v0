@@ -1,5 +1,5 @@
 .weeklyscores {
-  flex: 0.4;
+  flex: 0.7;
   padding: 20px;
   color:lightgray;
   border-right: 1px solid gray;
@@ -48,6 +48,28 @@
 
 .score__information {
   text-align: center;
+}
+
+.week__dropdown {
+  border: 1px solid orange;
+}
+
+.dropdown__toggle {
+  border: 1px solid lightgray;
+  background-color: #282828;
+  color: lightgray;
+}
+
+.dropdown__menu  {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  color: #282828;
+  border-radius: 3px;
+}
+
+.dropdown__item:hover {
+  background-color: lightgray;
 }
 
 

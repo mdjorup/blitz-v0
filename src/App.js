@@ -76,7 +76,6 @@ const Home = ({user, season, standingsData, scoresData}) => {
         {/* Scores */}
         <WeeklyScores season={season} standingsData={standingsData} scoresData={scoresData}/>
         {/* Leaderboards*/}
-        <RightSidebar />
 
       </div>
       {/* Footer */}

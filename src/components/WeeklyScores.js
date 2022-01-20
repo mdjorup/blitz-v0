@@ -38,40 +38,74 @@ function Score({game}) {
 }
 
 function WeeklyScores({season, standingsData, scoresData}) {
-
+  // 
   const [activeWeek, setActiveWeek] = useState("18");
+  const [seasonState, setSeasonState] = useState("REG")
   const [weekDropdownActive, setWeekDropdownActive] = useState(false);
-
+  
   const [weekResults, setWeekResults] = useState([]);
-
-  const weeks = ["18", "17", "16", "15", "14", "13", "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1"];
+  
+  //const dropdownWeeks = ["Conference", "Divisional","Wild Card" , "18", "17", "16", "15", "14", "13", "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1"];
 
   useEffect(() => {
-    const url = `https://api.sportsdata.io/v3/nfl/scores/json/LastCompletedWeek?key=${API_KEY}`;
+    const url = `https://api.sportsdata.io/v3/nfl/scores/json/CurrentWeek?key=${API_KEY}`;
     const fetchWeek = async () => {
       const response = await fetch(url);
       const json = await response.json();
       setActiveWeek(json);
     };
     fetchWeek();
+    const today = new Date();
+    if (today.getUTCMonth() <= 1){
+      setSeasonState("POST");
+    }
   }, []);
 
 
   useEffect(() => {
-    const url = `https://api.sportsdata.io/v3/nfl/scores/json/ScoresByWeek/2021/${activeWeek}?key=${API_KEY}`;
+    const url = `https://api.sportsdata.io/v3/nfl/scores/json/ScoresByWeek/${season + seasonState}/${activeWeek}?key=${API_KEY}`;
     const fetchWeekResults = async () => {
       const response = await fetch(url);
       const json = await response.json();
       setWeekResults(json);
     };
     fetchWeekResults();
-  }, [activeWeek]);
+  }, [season, seasonState, activeWeek]);
+
+  const getWeekOptions = () => {
+    let weeks = ["18", "17", "16", "15", "14", "13", "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1"];
+    const today = new Date();
+    if (today.getUTCMonth() <= 1) {
+      if (parseInt(activeWeek) <= 1) {weeks.unshift("Wild Card")};
+      if (parseInt(activeWeek) <= 2) {weeks.unshift("Divisional")};
+      //if (parseInt(activeWeek) <= 3) {weeks = ["Conference"] + [weeks]};
+      //if (parseInt(activeWeek) <= 4) {weeks = ["Super Bowl"] + [weeks]};
+    }
+    return weeks;
+  }
+
+  const weekOptions = getWeekOptions();
 
 
   const onDropdownClick = () => setWeekDropdownActive(!weekDropdownActive);
 
   const onOptionClick = option => () => {
-    setActiveWeek(option)
+    if(option === "Wild Card") {
+      setActiveWeek("1");
+      setSeasonState("POST");
+    } else if (option === "Divisional") {
+      setActiveWeek("2");
+      setSeasonState("POST");
+    } else if (option === "Conference") {
+      setActiveWeek("3");
+      setSeasonState("POST");
+    } else if (option === "Super Bowl") {
+      setActiveWeek("4");
+      setSeasonState("POST");
+    } else {
+      setActiveWeek(option)
+      setSeasonState("REG");
+    }
     setWeekDropdownActive(false);
   }
 
@@ -89,7 +123,7 @@ function WeeklyScores({season, standingsData, scoresData}) {
         <div className="weeklyscores__dropdown">
           <StdDropdown 
             value={activeWeek} 
-            options={weeks}
+            options={weekOptions}
             isActive={weekDropdownActive}
             onDropdownClick={onDropdownClick}
             onOptionClick={onOptionClick}
